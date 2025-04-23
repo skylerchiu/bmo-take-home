@@ -9,7 +9,7 @@ const ETFTable = ({ rowData }) => {
     const gridRef = useRef();
     const columnDefs = [
         { field: 'name', headerName: 'Constituent', sortable: true, filter: true },
-        { field: 'price',  headerName: 'Latest Close Price', sortable: true, filter: true },
+        { field: 'price',  headerName: 'Latest Close Price ($)', sortable: true, filter: true },
         { field: 'weight',  headerName: 'Weight' , sortable: true, filter: true, sort: 'desc'  }
     ]
 

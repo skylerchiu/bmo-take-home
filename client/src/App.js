@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import FileUpload from './components/fileUpload'
@@ -15,8 +14,7 @@ function App() {
   const [barData, setBarData] = useState(null)
   const [file, setFile] = useState(null);
   const [name, setETFName] = useState(null)
-
-
+  const [latestDate, setLatestDate] = useState(null)
 
   return (
     <div className="App">
@@ -25,8 +23,8 @@ function App() {
       </header>
       <div className="container">
 
-          <FileUpload file={file} setFile={setFile} setTableData={setTableData} setPriceData={setPriceData} setBarData={setBarData} setETFName={setETFName} />
-          {name && <div className='etfTitle'>Showing Data For: {name}</div>}
+          <FileUpload file={file} setFile={setFile} setTableData={setTableData} setPriceData={setPriceData} setBarData={setBarData} setETFName={setETFName} setLatestDate={setLatestDate} />
+          {name && <div className='etfTitle'>Showing Data For: {name} as of {latestDate}</div> }
           <div className='basketContainer'>
             <div className='sectionTitle'>Basket Details</div>
             <div className='basketContent'>

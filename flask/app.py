@@ -3,7 +3,6 @@ from flask_cors import CORS
 
 import pandas as pd
 
-
 app = Flask(__name__)
 CORS(app) 
 
@@ -18,20 +17,20 @@ def parse_etf():
         if file.filename == '':
             return "No selected file", 400
 
-
         df = pd.read_csv(file)
 
         if not 'name' in df.columns or not 'weight' in df.columns:
             return jsonify({'error': 'Not a valid CSV format'}), 500
 
-
+        # Interactive table
         prices['DATE'] = pd.to_datetime(prices['DATE']) 
         latest_prices = prices.sort_values('DATE', ascending=False).iloc[0]
+        latest_date = latest_prices['DATE']
         latest_prices = latest_prices.drop('DATE')
         table_df = df.copy()
         table_df['price'] = table_df['name'].map(latest_prices)
 
-
+        # Price chart
         weightings = dict(zip(df['name'], df['weight']))
         price_history_df = prices[['DATE'] + list(weightings.keys())]
         for i in weightings.keys():
@@ -39,14 +38,15 @@ def parse_etf():
         price_history_df['Price'] = price_history_df.drop(columns='DATE').sum(axis=1)
         price_history_df = price_history_df[['DATE', 'Price']]
 
+
+        # Bar chart
         bar_df = table_df.copy()
         bar_df['holdings'] = bar_df['weight'] * bar_df['price']
         bar_df = bar_df.sort_values('holdings', ascending=False).head(5)
 
-        app.logger.info(bar_df)
 
         return jsonify({'table': table_df.to_dict(orient='records'), 'price_data': price_history_df.to_dict(orient='records'), 'bar': bar_df.to_dict(orient='records'),
-                        'name': file.filename[:-4]})
+                        'name': file.filename[:-4], 'date' : latest_date.strftime('%b %d %Y')})
     
     except Exception as e:
         app.logger.error(f"Error: {str(e)}")

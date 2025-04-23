@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const FileUpload = ({ file, setFile, setTableData, setPriceData, setBarData, setETFName }) => {
+const FileUpload = ({ file, setFile, setTableData, setPriceData, setBarData, setETFName, setLatestDate }) => {
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile && selectedFile.type === 'text/csv') {
@@ -30,6 +30,7 @@ const FileUpload = ({ file, setFile, setTableData, setPriceData, setBarData, set
           setPriceData(resp.price_data)
           setBarData(resp.bar)
           setETFName(resp.name)
+          setLatestDate(resp.date)
         }
         catch (error){
           console.error('ERROR', error);
