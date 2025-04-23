@@ -8,7 +8,7 @@ const FileUpload = ({ file, setFile, setTableData, setPriceData, setBarData, set
         if (selectedFile && selectedFile.type === 'text/csv') {
             setFile(selectedFile);
         } else {
-            alert('Please upload a CSV file');
+            setFile(null)
         }
       };
 
@@ -34,10 +34,7 @@ const FileUpload = ({ file, setFile, setTableData, setPriceData, setBarData, set
         }
         catch (error){
           console.error('ERROR', error);
-
         }
-          
-
       };
 
     return(

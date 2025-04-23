@@ -5,8 +5,6 @@ import ETFTable from './components/table';
 import PriceChart from './components/priceChart';
 import BarChart from './components/barChart';
 
-const apiUrl = process.env.REACT_APP_API_URL;
-
 function App() {
 
   const [tableData, setTableData] = useState(null);

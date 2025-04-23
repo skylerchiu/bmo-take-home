@@ -12,7 +12,7 @@ prices = pd.read_csv('prices.csv')
 def parse_etf():
     try:
         if 'file' not in request.files:
-            return "No file part", 400
+            return "No file uploaded", 400
         file = request.files['file']
         if file.filename == '':
             return "No selected file", 400
