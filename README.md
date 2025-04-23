@@ -31,6 +31,7 @@ Backend:
 - Price data is available for all possible contituents and can be found prices.csv
 - There is no incomplete data. Error handling would have to be added in a real world application, as not every dataset would be complete like they are in the CSVs.
 - Assumes filename is the name/ticker of the ETF for displaying purposes
+- Backend will be deployed somewhere else, and the envrionment variable for its URI would need to be updated
 
 
 
