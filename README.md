@@ -2,7 +2,11 @@
 
 A single-page web-based application was made to meet the requirements of the assessment.
 
-The frontend and backend are each containerized. Both can be started with `docker compose up`
+The frontend and backend are each containerized. 
+
+To start the application, run 
+
+`docker compose up`
 
 ## Tools and Libraries
 
